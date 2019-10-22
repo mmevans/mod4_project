@@ -8,6 +8,7 @@ class CreateCourses < ActiveRecord::Migration[6.0]
       t.date :start_date
       t.date :end_date
       t.integer :user_id
+      t.string :icon
       t.string :student_ids, default: [], array: true
     end
   end

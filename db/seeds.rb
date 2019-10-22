@@ -12,21 +12,19 @@ school_1 = School.create({
 puts "users ..."
 user_barrette1 = User.create({
     name: "Barrette Banner",
-    username: 'bar3tt3',
+    email: 'bar3tt3',
     password: 'password1',
     school_id: school_1.id,
     gender: 'male',
-    birthday: '1998-09-15',
-    isTeacher?: true
+    isTeacher: true
 })
 user_michael1 = User.create({
     name: "Michael Evans",
-    username: 'm1k3',
+    email: 'm1k3',
     password: 'password',
     school_id: school_1.id,
     gender: "male",
-    birthday: "1997-01-23",
-    isTeacher?: false
+    isTeacher: false
 })
 puts "courses ..."
 biology_101_course = Course.create({
@@ -40,6 +38,7 @@ puts "assignments ..."
 assignment_1 = Assignment.create({
     name: "HW 1",
     category: 'homework',
+    isComplete?: false,
     course_id: biology_101_course.id
 })
 puts "grades ..."
