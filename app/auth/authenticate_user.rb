@@ -1,5 +1,6 @@
 class AuthenticateUser
     prepend SimpleCommand
+    require './lib/json_web_token'
     attr_accessor :email, :password
   
     #this is where parameters are taken when the command is called

@@ -9,6 +9,13 @@ puts "schools ..."
 school_1 = School.create({
     name: 'Seven Lakes'
 })
+
+school_2 = School.create({
+    name: 'Taylor High School'
+})
+school_3 = School.create({
+    name: 'Cinco Ranch High School'
+})
 puts "users ..."
 user_barrette1 = User.create({
     name: "Barrette Banner",

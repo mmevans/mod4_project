@@ -1,24 +1,15 @@
 class UsersController < ApplicationController
-    before_action :authenticate_request, only: %i[login register]
+    skip_before_action :authenticate_request, only: %i[login register]
+    before_action :define_current_user
+
 
     def index
         users = User.all
         render json: users
     end
 
-    def login
-        authenticate params[:email], params[:password]
-      end
-    def test
-        render json: {
-              message: 'You have passed authentication and authorization test'
-            }
-    end
-
-    def create
-        puts params
-        byebug
-        user = User.new(user_params)
+    def register
+        user = User.create(user_params)
         if user.save
             render json: {status: 'User created successfully' }, status: :created
         else
@@ -26,8 +17,14 @@ class UsersController < ApplicationController
         end
     end
 
-    def user_params
-        params.permit(:name, :username, :email, :password, :password_confirmation, :gender, :isTeacher?)
+    def login
+        authenticate params[:email], params[:password]
+    end
+
+    def test
+        render json: {
+              message: 'You have passed authentication and authorization test'
+        }
     end
 
     def define_current_user
@@ -43,6 +40,11 @@ class UsersController < ApplicationController
     end
 
     private
+
+    def user_params
+        params.require(:user).permit(:name, :email, :password_digest, :school_id, :gender, :isTeacher)
+    end
+
     def authenticate(email, password)
         command = AuthenticateUser.call(email, password)
 
