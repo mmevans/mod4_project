@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_191645) do
   create_table "assignments", force: :cascade do |t|
     t.string "name"
     t.string "category"
-    t.boolean "isComplete?"
+    t.boolean "isComplete"
     t.integer "course_id"
   end
 

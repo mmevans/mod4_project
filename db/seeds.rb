@@ -45,7 +45,7 @@ puts "assignments ..."
 assignment_1 = Assignment.create({
     name: "HW 1",
     category: 'homework',
-    isComplete?: false,
+    isComplete: false,
     course_id: biology_101_course.id
 })
 puts "grades ..."
