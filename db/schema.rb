@@ -10,16 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_191645) do
+ActiveRecord::Schema.define(version: 2019_10_24_182123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "description"
+    t.integer "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "assignments", force: :cascade do |t|
     t.string "name"
     t.string "category"
     t.boolean "isComplete"
     t.integer "course_id"
+    t.date "due_date"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -36,10 +44,18 @@ ActiveRecord::Schema.define(version: 2019_10_21_191645) do
     t.string "description"
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.integer "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "grades", force: :cascade do |t|
+    t.integer "value"
     t.integer "user_id"
     t.integer "assignment_id"
-    t.integer "value"
   end
 
   create_table "schools", force: :cascade do |t|

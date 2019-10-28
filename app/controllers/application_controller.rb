@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    before_action :authenticate_request, except: [:index, :create, :update, :destroy, :edit]
+    before_action :authenticate_request, except: [:index, :create, :update, :destroy, :edit, :show, :update2, :delete_pending]
     attr_reader :current_user
     
     include ExceptionHandler
@@ -11,21 +11,4 @@ class ApplicationController < ActionController::API
       @current_user = AuthorizeApiRequest.call(request.headers).result
       render json: { error: 'Not Authorized' }, status: 401 unless @current_user
     end
-    # rescue_from Exception, :with => :render_error_response
-
-    # def render_error_response(error)
-    #     render json: error
-    # end
-
-    # def current_user
-    #     begin
-    #         method, token = request.headers[:Authorization].split(' ')
-    #         if method === 'Bearer'
-    #             payload, header = JWT.decode(token, 'asdljasldkfjs')
-    #             User.find(payload["id"])
-    #         end
-    #     rescue
-    #         raise Exception.new('You must be logged in to make this request')
-    #     end
-    # end
 end
